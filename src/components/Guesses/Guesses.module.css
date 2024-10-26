@@ -1,0 +1,114 @@
+.wrapper {
+  flex-grow: 1;
+  align-content: center;
+  margin-bottom: 15px;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.boxWrapper {
+  perspective: 1000px;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  border: 2px solid #3a3a3c;
+  display: flex;
+  height: 48px;
+  width: 48px;
+  font-size: 28px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.boxFront, .boxBack {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.boxGuessed {
+  transform: rotateX(180deg);
+}
+
+.boxPuzzleCompleted {
+  background-color: #538d4e;
+  animation-name: jump;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+}
+
+.boxBack {
+  background-color: #181515;
+  transform: rotateX(180deg);
+}
+
+
+.boxFront {
+  background-color: #181515;
+}
+
+.green {
+  background-color: #538d4e;
+}
+
+.yellow {
+  background-color: #b59f3b;
+}
+
+@keyframes expand {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.toast {
+  position: absolute;
+  top: -5px;
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  animation: expand;
+  animation-duration: 500ms;
+}

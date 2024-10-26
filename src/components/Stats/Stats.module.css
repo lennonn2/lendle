@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.yAxis {
+  border-right: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-weight: 500;
+  padding-right: 10px;
+}
+
+.yKey {
+  display: flex;
+  align-items: center;
+  flex-basis: 24px;
+}
+
+.yKey:last-child {
+  margin-bottom: 5px;
+}
+
+.main {
+  border-bottom: 2px solid white;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.bar {
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  gap: 3px;
+  background-color: #538d4e;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  flex: 1 0 24px;
+}
+
+.bar:last-child {
+  margin-bottom: 5px;
+}
+
+.barNumber {
+  padding-right: 10px;
+}

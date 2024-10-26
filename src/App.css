@@ -1,0 +1,14 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2px;
+  flex-grow: 1;
+  justify-content: center;
+}

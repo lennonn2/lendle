@@ -1,0 +1,11 @@
+.main {
+  position: fixed;
+  background-color: #181515;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}

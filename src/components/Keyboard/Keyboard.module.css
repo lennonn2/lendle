@@ -1,0 +1,46 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0 4px;
+  margin-bottom: 20px;
+}
+
+.keyboardRow {
+  display: flex;
+  gap: 3px;
+  justify-content: center;
+}
+
+.key {
+  background-color: grey;
+  border-radius: 4px;
+  font-weight: 600;
+  color: white;
+  height: 45px;
+  flex: 1 1 30px;
+  min-width: fit-content;
+  max-width: 38px;
+}
+
+.keyGreen {
+  background-color: #538d4e;
+  transition: background-color 0ms linear;
+  transition-delay: 2200ms;
+}
+
+.keyYellow {
+  background-color: #b59f3b;
+  transition: background-color 0ms linear;
+  transition-delay: 2200ms;
+}
+
+.keyGrey {
+  background-color: #313131;
+  transition: background-color 0ms linear;
+  transition-delay: 2200ms;
+}
+
+.spacer {
+  min-width: 10px;
+}
