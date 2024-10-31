@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+.streakItem {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.number {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: grey;
+}

@@ -4,7 +4,7 @@ import { AppContext } from '../../context/AppContext';
 import styles from './Guesses.module.css';
 
 const NUMBER_OF_LETTERS = 5;
-const NUMBER_OF_ROWS = 5;
+const NUMBER_OF_ROWS = 6;
 
 const Box = ({
   index,
