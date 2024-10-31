@@ -1,5 +1,6 @@
 .main {
   display: flex;
+  flex: 1 1 auto;
   max-width: 320px;
   flex-direction: column;
   align-items: center;
@@ -18,4 +19,8 @@
   display: flex;
   background-color: transparent;
   color: white;
+}
+
+.heading2 {
+  margin-bottom: 0;
 }

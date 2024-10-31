@@ -17,6 +17,10 @@ const defaultState = {
   setSubmittedGuesses: () => {},
   puzzleCompleted: false,
   setPuzzleCompleted: () => {},
+  isStatsModalOpen: false,
+  setIsStatsModalOpen: () => {},
+  activeDate: null,
+  setActiveDate: () => {},
 };
 
 export type AppState = {
@@ -29,6 +33,10 @@ export type AppState = {
   setSubmittedGuesses: (guesses: SubmittedGuessesType) => void;
   puzzleCompleted: boolean;
   setPuzzleCompleted: (isComplete: boolean) => void;
+  isStatsModalOpen: boolean;
+  setIsStatsModalOpen: (isOpen: boolean) => void;
+  activeDate: string | null;
+  setActiveDate: (date: string | null) => void;
 };
 
 export const AppContext = createContext<AppState>(defaultState);
