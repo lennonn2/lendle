@@ -2,10 +2,27 @@ import { useContext, useCallback } from 'react';
 import { AppContext } from '../context/AppContext';
 import useOverallStats from './useOverallStats';
 
-const getLetterCorrectness = (word: string, guess: string, index: number) => {
-  if (!word.includes(guess)) return 'x';
-  if (word[index] === guess) return 'y';
-  return 'n';
+const getAllLetterCorrectness = (word: string, guess: string) => {
+  const result = Array(word.length).fill('x');
+  const wordArr = word.split('');
+  const guessArr = guess.split('');
+
+  for (let i = 0; i < guess.length; i++) {
+    if (guess[i] === word[i]) {
+      result[i] = 'y';
+      guessArr[i] = '';
+      wordArr[i] = '';
+    }
+  }
+
+  for (let i = 0; i < guess.length; i++) {
+    if (guessArr[i] !== '' && wordArr.includes(guessArr[i])) {
+      result[i] = 'n';
+      wordArr[wordArr.indexOf(guessArr[i])] = ''; // Mark as used
+    }
+  }
+
+  return result.join('');
 };
 
 const useSetNextLetter = () => {
@@ -34,30 +51,16 @@ const useSetNextLetter = () => {
     if (currentGuessString.length !== 5 || !todaysWord) return;
 
     const isGuessCorrect = todaysWord.toLowerCase() === currentGuessString.toLowerCase();
+    const letterGuesses = getAllLetterCorrectness(todaysWord, currentGuessString);
 
     const newSubmittedGuesses = {
       ...submittedGuesses,
       [guessNumber]: [
-        [
-          currentGuessString[0],
-          getLetterCorrectness(todaysWord, currentGuessString[0], 0),
-        ],
-        [
-          currentGuessString[1],
-          getLetterCorrectness(todaysWord, currentGuessString[1], 1),
-        ],
-        [
-          currentGuessString[2],
-          getLetterCorrectness(todaysWord, currentGuessString[2], 2),
-        ],
-        [
-          currentGuessString[3],
-          getLetterCorrectness(todaysWord, currentGuessString[3], 3),
-        ],
-        [
-          currentGuessString[4],
-          getLetterCorrectness(todaysWord, currentGuessString[4], 4),
-        ],
+        [currentGuessString[0], letterGuesses[0]],
+        [currentGuessString[1], letterGuesses[1]],
+        [currentGuessString[2], letterGuesses[2]],
+        [currentGuessString[3], letterGuesses[3]],
+        [currentGuessString[4], letterGuesses[4]],
       ],
     };
 
