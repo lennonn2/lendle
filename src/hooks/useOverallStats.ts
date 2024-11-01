@@ -1,44 +1,39 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import { DailyStatsType } from '../types';
 
 const useOverallStats = () => {
-  const existingStats = localStorage.getItem('lendle-stats');
-  const stats = useMemo(() => JSON.parse(existingStats) ?? {}, [existingStats]);
-
   const getStat = useCallback((key: keyof DailyStatsType) => {
-    const obj = JSON.parse(localStorage.getItem('lendle-stats'));
+    const obj = JSON.parse(localStorage.getItem('lendle-stats') ?? '{}');
     return obj?.[key] ?? null;
   }, []);
 
-  const setStat = useCallback(
-    (key: keyof DailyStatsType, value: string) => {
-      localStorage.setItem(
-        'lendle-stats',
-        JSON.stringify({
-          ...stats,
-          [key]: value,
-        }),
-      );
-    },
-    [stats],
-  );
+  const setStat = useCallback((key: keyof DailyStatsType, value: string) => {
+    const stats = JSON.parse(localStorage.getItem('lendle-stats') ?? '{}');
+    localStorage.setItem(
+      'lendle-stats',
+      JSON.stringify({
+        ...stats,
+        [key]: value,
+      }),
+    );
+  }, []);
 
   const incrementGamesCompleted = useCallback(() => {
-    const gamesCompleted = getStat('gamesCompleted');
-    setStat('gamesCompleted', `${gamesCompleted ?? 0 + 1}`);
+    const gamesCompleted = getStat('gamesCompleted') ?? 0;
+    setStat('gamesCompleted', gamesCompleted + 1);
   }, [getStat, setStat]);
 
   const incrementGamesWon = useCallback(() => {
-    const gamesWon = getStat('gamesWon');
-    setStat('gamesWon', `${gamesWon ?? 0 + 1}`);
+    const gamesWon = getStat('gamesWon') ?? 0;
+    setStat('gamesWon', gamesWon + 1);
   }, [getStat, setStat]);
 
   const incrementWinStreak = useCallback(() => {
-    const winStreak = getStat('winStreak');
-    setStat('winStreak', `${winStreak ?? 0 + 1}`);
-    const bestWinStreak = getStat('bestWinStreak');
+    const winStreak = getStat('winStreak') ?? 0;
+    setStat('winStreak', winStreak + 1);
+    const bestWinStreak = getStat('bestWinStreak') ?? 0;
     if (winStreak + 1 > bestWinStreak) {
-      setStat('bestWinStreak', winStreak);
+      setStat('bestWinStreak', winStreak + 1);
     }
   }, [getStat, setStat]);
 

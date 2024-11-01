@@ -22,8 +22,8 @@ const Streaks = () => {
   const winPercentage = Number.isNaN(gamesCompeleted / gamesWon)
     ? 0
     : (gamesWon / gamesCompeleted) * 100;
-  const winStreak = getStat('winStreak');
-  const maxStreak = getStat('bestWinStreak');
+  const winStreak = getStat('winStreak') ?? 0;
+  const maxStreak = getStat('bestWinStreak') ?? 0;
   return (
     <div className={styles.main}>
       <StreakItem number={gamesCompeleted} subtitle="Played" />

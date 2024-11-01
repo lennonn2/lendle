@@ -76,7 +76,7 @@ const useSetNextLetter = () => {
       if (isGuessCorrect) {
         incrementGamesWon();
         incrementWinStreak();
-        incrementOverallStats(guessNumber);
+        incrementOverallStats(guessNumber + 1);
       } else {
         if (!isGuessCorrect) {
           setStat('winStreak', '0');
