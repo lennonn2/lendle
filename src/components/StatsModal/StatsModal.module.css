@@ -24,3 +24,15 @@
 .heading2 {
   margin-bottom: 0;
 }
+
+.copyButton {
+  align-items: center;
+  background-color: #538d4e;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 15px;
+  margin-top: 20px;
+}

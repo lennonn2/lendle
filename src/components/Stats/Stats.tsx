@@ -3,7 +3,7 @@ import styles from './Stats.module.css';
 
 const Stats = () => {
   const { getStat } = useOverallStats();
-  const statsObj: Record<number, number> = JSON.parse(getStat('overallStats') ?? {});
+  const statsObj: Record<number, number> = JSON.parse(getStat('overallStats') ?? '{}');
   const largestNumber = Object.values(statsObj).sort((a, b) => b - a)?.[0] ?? 0;
   const count = new Array(6);
   return (

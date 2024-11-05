@@ -39,7 +39,7 @@ const useOverallStats = () => {
 
   const incrementOverallStats = useCallback(
     (number: number) => {
-      const overallStats = getStat('overallStats');
+      const overallStats = JSON.parse(getStat('overallStats'));
       if (!overallStats) {
         setStat(
           'overallStats',
