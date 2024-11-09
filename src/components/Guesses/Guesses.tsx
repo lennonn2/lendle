@@ -95,9 +95,10 @@ const Guesses = () => {
     todaysWord,
   } = useContext(AppContext);
   const count = new Array(NUMBER_OF_ROWS);
+  const toastText = todaysWord === currentGuessString ? 'Well done!' : 'Unlucky';
   useEffect(() => {
     let timeoutId = null;
-    if (puzzleCompleted && todaysWord === currentGuessString) {
+    if (puzzleCompleted) {
       setShowToast(true);
       timeoutId = setTimeout(() => {
         setShowToast(false);
@@ -121,7 +122,7 @@ const Guesses = () => {
             puzzleCompleted={puzzleCompleted && todaysWord === currentGuessString}
           />
         ))}
-        {showToast ? <div className={styles.toast}>Well done!</div> : null}
+        {showToast ? <div className={styles.toast}>{toastText}</div> : null}
       </div>
     </div>
   );

@@ -132,11 +132,14 @@ const StatsModal = () => {
                 ? 'Congrats!'
                 : 'Unlucky this time!'}
             </h2>
-            {puzzleCompleted ? (
+            {puzzleCompleted && todaysWord === currentGuessString ? (
               <h4>
                 You got today's Lendle in {guessNumber + 1}{' '}
                 {guessNumber + 1 > 1 ? 'guesses' : 'guess'}!
               </h4>
+            ) : null}
+            {puzzleCompleted && todaysWord !== currentGuessString ? (
+              <h4>Today's word was {todaysWord}</h4>
             ) : null}
           </>
         ) : null}
