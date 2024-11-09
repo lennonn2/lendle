@@ -100,6 +100,8 @@ const StatsModal = () => {
     isStatsModalOpen,
     setIsStatsModalOpen,
     activeDate,
+    todaysWord,
+    currentGuessString,
   } = useContext(AppContext);
   const [copyText, setCopyText] = useState(COPY_TEXT);
   const unsuccessfulCompletedPuzzle = guessNumber === 5 && submittedGuesses[5];
@@ -126,7 +128,9 @@ const StatsModal = () => {
         {puzzleCompleted || unsuccessfulCompletedPuzzle ? (
           <>
             <h2 className={styles.heading2}>
-              {puzzleCompleted ? 'Congrats!' : 'Unlucky this time!'}
+              {puzzleCompleted && todaysWord === currentGuessString
+                ? 'Congrats!'
+                : 'Unlucky this time!'}
             </h2>
             {puzzleCompleted ? (
               <h4>

@@ -87,12 +87,17 @@ const Row = ({
 
 const Guesses = () => {
   const [showToast, setShowToast] = useState(false);
-  const { guessNumber, currentGuessString, submittedGuesses, puzzleCompleted } =
-    useContext(AppContext);
+  const {
+    guessNumber,
+    currentGuessString,
+    submittedGuesses,
+    puzzleCompleted,
+    todaysWord,
+  } = useContext(AppContext);
   const count = new Array(NUMBER_OF_ROWS);
   useEffect(() => {
     let timeoutId = null;
-    if (puzzleCompleted) {
+    if (puzzleCompleted && todaysWord === currentGuessString) {
       setShowToast(true);
       timeoutId = setTimeout(() => {
         setShowToast(false);
@@ -101,7 +106,7 @@ const Guesses = () => {
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [puzzleCompleted]);
+  }, [puzzleCompleted, todaysWord, currentGuessString]);
 
   return (
     <div className={styles.wrapper}>
@@ -113,7 +118,7 @@ const Guesses = () => {
             guessNumber={guessNumber}
             submittedGuess={submittedGuesses[i]}
             currentGuess={currentGuessString}
-            puzzleCompleted={puzzleCompleted}
+            puzzleCompleted={puzzleCompleted && todaysWord === currentGuessString}
           />
         ))}
         {showToast ? <div className={styles.toast}>Well done!</div> : null}
