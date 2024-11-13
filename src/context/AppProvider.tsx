@@ -84,7 +84,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       setPuzzleCompleted(false);
       setGuessNumber(0);
       if (lastSuccessfulDate && getNumDaysBetweenDates(lastSuccessfulDate, today) > 1) {
-        setStat('winStreak', '0');
+        setStat('winStreak', 0);
       }
     }
   }, []);

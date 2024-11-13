@@ -7,7 +7,7 @@ const useOverallStats = () => {
     return obj?.[key] ?? null;
   }, []);
 
-  const setStat = useCallback((key: keyof DailyStatsType, value: string) => {
+  const setStat = useCallback((key: keyof DailyStatsType, value: string | number) => {
     const stats = JSON.parse(localStorage.getItem('lendle-stats') ?? '{}');
     localStorage.setItem(
       'lendle-stats',

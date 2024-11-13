@@ -83,7 +83,7 @@ const useSetNextLetter = () => {
         setLastSuccessfulDate(formattedDate);
       } else {
         if (!isGuessCorrect) {
-          setStat('winStreak', '0');
+          setStat('winStreak', 0);
         }
       }
       incrementGamesCompleted();
