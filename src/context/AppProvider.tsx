@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { WORDS_LIST } from '../words';
 import { usePersistedState } from '../hooks/usePersistedState';
 import type { SubmittedGuessesType } from '../types';
+import { getNumDaysBetweenDates } from '../utils';
+import useOverallStats from '../hooks/useOverallStats';
 
 import { AppContext } from './AppContext';
 
@@ -25,9 +27,14 @@ const fetchTodaysWord = async () => {
 };
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
+  const { setStat } = useOverallStats();
   const [activeDate, setActiveDate] = usePersistedState<string | null>(
     null,
     'activeDate',
+  );
+  const [lastSuccessfulDate, setLastSuccessfulDate] = usePersistedState<string | null>(
+    null,
+    'lastSuccessfulDate',
   );
   const [guessNumber, setGuessNumber] = usePersistedState<number>(0, 'guessNumber');
   const [puzzleCompleted, setPuzzleCompleted] = usePersistedState<boolean>(
@@ -76,6 +83,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
       });
       setPuzzleCompleted(false);
       setGuessNumber(0);
+      if (lastSuccessfulDate && getNumDaysBetweenDates(lastSuccessfulDate, today) > 1) {
+        setStat('winStreak', '0');
+      }
     }
   }, []);
 
@@ -93,6 +103,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     setIsStatsModalOpen,
     activeDate,
     setActiveDate,
+    lastSuccessfulDate,
+    setLastSuccessfulDate,
   };
 
   return <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>;

@@ -21,3 +21,14 @@ export const generateShareString = (
     `${stringArr.join('\n')}`,
   ].join('\n');
 };
+
+export const getNumDaysBetweenDates = (date1: string, date2: string) => {
+  const startDate = new Date(date1);
+  const endDate = new Date(date2);
+
+  const diffInMs = Math.abs(endDate.valueOf() - startDate.valueOf());
+
+  const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+  return diffInDays;
+};

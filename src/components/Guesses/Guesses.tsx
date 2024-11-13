@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import clsx from 'clsx';
 import { AppContext } from '../../context/AppContext';
 import styles from './Guesses.module.css';
@@ -95,10 +95,13 @@ const Guesses = () => {
     todaysWord,
   } = useContext(AppContext);
   const count = new Array(NUMBER_OF_ROWS);
-  const toastText = todaysWord === currentGuessString ? 'Well done!' : 'Unlucky';
+  const toastText = useMemo(
+    () => (todaysWord === currentGuessString ? 'Well done!' : 'Unlucky'),
+    [todaysWord, currentGuessString],
+  );
   useEffect(() => {
     let timeoutId = null;
-    if (puzzleCompleted) {
+    if (puzzleCompleted && currentGuessString) {
       setShowToast(true);
       timeoutId = setTimeout(() => {
         setShowToast(false);
@@ -107,7 +110,7 @@ const Guesses = () => {
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [puzzleCompleted, todaysWord, currentGuessString]);
+  }, [puzzleCompleted, currentGuessString]);
 
   return (
     <div className={styles.wrapper}>

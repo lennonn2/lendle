@@ -21,6 +21,8 @@ const defaultState = {
   setIsStatsModalOpen: () => {},
   activeDate: null,
   setActiveDate: () => {},
+  lastSuccessfulDate: null,
+  setLastSuccessfulDate: () => {},
 };
 
 export type AppState = {
@@ -37,6 +39,8 @@ export type AppState = {
   setIsStatsModalOpen: (isOpen: boolean) => void;
   activeDate: string | null;
   setActiveDate: (date: string | null) => void;
+  lastSuccessfulDate: string | null;
+  setLastSuccessfulDate: (date: string | null) => void;
 };
 
 export const AppContext = createContext<AppState>(defaultState);

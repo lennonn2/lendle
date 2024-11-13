@@ -38,6 +38,7 @@ const useSetNextLetter = () => {
     setPuzzleCompleted,
     setIsStatsModalOpen,
     setActiveDate,
+    setLastSuccessfulDate,
   } = useContext(AppContext);
   const {
     incrementGamesWon,
@@ -74,12 +75,12 @@ const useSetNextLetter = () => {
       .split('T')[0];
     setActiveDate(formattedDate);
 
-    setCurrentGuessString('');
     if (isGuessCorrect || guessNumber === 5) {
       if (isGuessCorrect) {
         incrementGamesWon();
         incrementWinStreak();
         incrementOverallStats(guessNumber + 1);
+        setLastSuccessfulDate(formattedDate);
       } else {
         if (!isGuessCorrect) {
           setStat('winStreak', '0');
@@ -91,6 +92,7 @@ const useSetNextLetter = () => {
         setIsStatsModalOpen(true);
       }, 4000);
     } else if (guessNumber <= 5) {
+      setCurrentGuessString('');
       setTimeout(() => setGuessNumber(guessNumber + 1), 700);
     }
   }, [
@@ -109,6 +111,7 @@ const useSetNextLetter = () => {
     incrementWinStreak,
     setStat,
     incrementOverallStats,
+    setLastSuccessfulDate,
   ]);
 
   const handleClickBackspace = useCallback(() => {
