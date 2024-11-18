@@ -14,12 +14,18 @@ const getIsActiveDateToday = () => {
   return activeDateString === today;
 };
 
-function usePersistedState<T>(defaultValue: T, key: string): PersistedState<T> {
+function usePersistedState<T>(
+  defaultValue: T,
+  key: string,
+  persist = false,
+): PersistedState<T> {
   const [value, setValue] = useState<T>(() => {
     const value = window.localStorage.getItem(key);
 
     const isActiveDateToday = getIsActiveDateToday();
-    return value && isActiveDateToday ? (JSON.parse(value) as T) : defaultValue;
+    return value && (isActiveDateToday || persist)
+      ? (JSON.parse(value) as T)
+      : defaultValue;
   });
 
   useEffect(() => {

@@ -24,11 +24,13 @@ const getActiveKeyColours = (guesses: SubmittedGuessesType) => {
           if (guess === 'y') {
             acc.greens.add(letter);
             acc.yellows.delete(letter);
-          }
-          if (guess === 'n') {
+          } else if (guess === 'n' && !acc.greens.has(letter)) {
             acc.yellows.add(letter);
-          }
-          if (guess === 'x') {
+          } else if (
+            guess === 'x' &&
+            !acc.greens.has(letter) &&
+            !acc.yellows.has(letter)
+          ) {
             acc.greys.add(letter);
           }
         });

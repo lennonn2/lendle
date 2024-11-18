@@ -35,6 +35,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [lastSuccessfulDate, setLastSuccessfulDate] = usePersistedState<string | null>(
     null,
     'lastSuccessfulDate',
+    true,
   );
   const [guessNumber, setGuessNumber] = usePersistedState<number>(0, 'guessNumber');
   const [puzzleCompleted, setPuzzleCompleted] = usePersistedState<boolean>(
